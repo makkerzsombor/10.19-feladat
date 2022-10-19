@@ -1,68 +1,8 @@
-interface Results{
-    winner: string;
-    date: Date;
-    
-    result(): string;
-}
+import { Calvinball } from "./Calvinball";
+import { Football } from "./Football";
+import { Marathon } from "./Marathon";
+import { Results } from "./Results";
 
-class Football implements Results{
-    winner: string;
-    date: Date;
-    cs1: number;
-    cs2: number;
-
-    constructor(winner: string, date: Date, cs1: number, cs2: number){
-        this.winner = winner;
-        this.date = date;
-        this.cs1 = cs1;
-        this.cs2 = cs2;
-    }
-
-    result(): string {
-        return 'Football match: '+ this.cs1 + '-' + this.cs2;
-    }
-}
-
-class Marathon implements Results{
-    winner: string;
-    date: Date;
-    ido: number;
-
-    constructor(winner: string, date: Date, ido: number){
-        this.winner = winner;
-        this.date = date;
-        this.ido = ido;
-    }
-
-    result(): string {
-        return 'Marathon: ' + Math.floor(this.ido / 60) + ' min ' + this.ido % 60 + ' s';
-    }
-}
-
-class Calvinball implements Results{
-    #winner: string;
-    date: Date;
-    pont: number;
-    constructor( winner: string, date: Date){
-        this.#winner = winner;
-        this.date = date;
-        this.pont = Math.floor(Math.random()*100)+10;
-    }
-
-    set winner(winner: string){
-        if (winner == 'Calvin' || winner == 'Hobbes') {
-            this.#winner = winner;
-        }
-    }
-
-    get winner():string{
-        return this.#winner;
-    }
-
-    result(): string {
-        return 'Calvinball: '+ this.pont +' points';
-    }
-}
 
 let meccsek: Results[] = [
     new Football('Manchester', new Date(2002, 10, 2), 4, 2),
@@ -76,3 +16,19 @@ let meccsek: Results[] = [
 for (let i = 0; i < meccsek.length; i++) {
     console.log(meccsek[i].result());    
 }
+
+console.log();
+console.log('Csak Calvin nyert:');
+for (let i = 0; i < meccsek.length; i++) {
+    if (meccsek[i].winner == 'Calvin') {
+        console.log(meccsek[i].result());
+    }
+}
+
+console.log()
+console.log('Rendezett:')
+meccsek.sort((a, b) => {return a.date.getTime() - b.date.getTime()})
+for (let i = 0; i < meccsek.length; i++) {
+    console.log(meccsek[i].result());    
+}
+
