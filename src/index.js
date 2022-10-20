@@ -27,3 +27,36 @@ meccsek.sort((a, b) => { return a.date.getTime() - b.date.getTime(); });
 for (let i = 0; i < meccsek.length; i++) {
     console.log(meccsek[i].result());
 }
+document.addEventListener('DOMContentLoaded', () => {
+    var _a, _b, _c;
+    // Football
+    (_a = document.getElementById('fHozzaad')) === null || _a === void 0 ? void 0 : _a.addEventListener('click', () => {
+        let csapat = (document.getElementById('fNev').value);
+        let idoPont = (document.getElementById('fIdo').value);
+        let cs1 = (document.getElementById('f1G').value);
+        let cs2 = (document.getElementById('f2G').value);
+        meccsek.push(new Football_1.Football(csapat, new Date(idoPont), parseInt(cs1), parseInt(cs2)));
+        for (let i = 0; i < meccsek.length; i++) {
+            console.log(meccsek[i].result());
+        }
+    });
+    // Marathon
+    (_b = document.getElementById('mHozzaad')) === null || _b === void 0 ? void 0 : _b.addEventListener('click', () => {
+        let nev = (document.getElementById('mNev').value);
+        let idoPont = (document.getElementById('mIdo').value);
+        let ideje = (document.getElementById('mIdeje').value);
+        meccsek.push(new Marathon_1.Marathon(nev, new Date(idoPont), parseInt(ideje)));
+        for (let i = 0; i < meccsek.length; i++) {
+            console.log(meccsek[i].result());
+        }
+    });
+    // Calvin
+    (_c = document.getElementById('cHozzaad')) === null || _c === void 0 ? void 0 : _c.addEventListener('click', () => {
+        let nev = (document.getElementById('CH').value);
+        let idoPont = (document.getElementById('cIdo').value);
+        meccsek.push(new Calvinball_1.Calvinball(nev, new Date(idoPont)));
+        for (let i = 0; i < meccsek.length; i++) {
+            console.log(meccsek[i].result());
+        }
+    });
+});
